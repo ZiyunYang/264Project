@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
                 if (loginFormState == null) {
+
                     return;
                 }
                 loginButton.setEnabled(loginFormState.isDataValid());
