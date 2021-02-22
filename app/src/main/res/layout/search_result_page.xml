@@ -11,7 +11,7 @@
         android:layout_width="58dp"
         android:layout_height="41dp"
         android:gravity="center"
-        android:text="<"
+        android:text="B"
         android:textSize="25dp"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="28dp" />
@@ -41,24 +41,21 @@
         android:layout_width="112dp"
         android:layout_height="26dp"
         tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="109dp"
-        android:entries="@array/options1"/>
+        tools:layout_editor_absoluteY="109dp"/>
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="112dp"
         android:layout_height="26dp"
         tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="109dp"
-        android:entries="@array/options2"/>
+        tools:layout_editor_absoluteY="109dp"/>
 
     <Spinner
         android:id="@+id/spinner3"
         android:layout_width="112dp"
         android:layout_height="26dp"
         tools:layout_editor_absoluteX="265dp"
-        tools:layout_editor_absoluteY="109dp"
-        android:entries="@array/options3"/>
+        tools:layout_editor_absoluteY="109dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPrograms"
