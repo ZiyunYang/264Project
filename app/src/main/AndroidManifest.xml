@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IrvineTaste">
         <activity android:name=".HomepageActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".PositionAuthActivity"></activity>
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
