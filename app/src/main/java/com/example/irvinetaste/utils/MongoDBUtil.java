@@ -1,4 +1,4 @@
-package com.example.irvinetaste.Utils;
+package com.example.irvinetaste.utils;
 
 import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
@@ -7,7 +7,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-
 
 import org.bson.Document;
 
@@ -31,10 +30,10 @@ public class MongoDBUtil {
         String host = "cluster0.v64ra.mongodb.net/myFirstDatabase";
 
         try{
-            mongoClient= MongoClients.create("mongodb+srv://<root>:<uci123456>@cluster0.v64ra.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+            mongoClient= MongoClients.create("mongodb+srv://root:uci123456@cluster0.v64ra.mongodb.net/myFirstDatabase?authSource=admin&retryWrites=true&w=majority");
             db= mongoClient.getDatabase(dbName);
-//            System.out.println(db.getName());
-            System.out.println("Connect tot database successfully");
+            System.out.println("Connect to database successfully");
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -43,6 +42,8 @@ public class MongoDBUtil {
 
     public void getCollection(String collName){
         MongoCollection<Document> collection = db.getCollection(collName);
+
+        System.out.println(collection == null);
 
         System.out.println("the number of result is " + collection.countDocuments());
 
@@ -61,7 +62,6 @@ public class MongoDBUtil {
     public void createCollection(String collName)
     {
         db.createCollection(collName);
-        //TODO It has error
     }
 
     /**
@@ -120,14 +120,6 @@ public class MongoDBUtil {
         return 0;
     }
 
-
-
-
-    public static void main(String[] args) {
-        MongoDBUtil mongoDBUtil = new MongoDBUtil("irvinetaste");
-
-        mongoDBUtil.getCollection("user");
-    }
 
 
 }
