@@ -25,10 +25,10 @@ public class SearchResultActivity extends AppCompatActivity {
 
     static Retrofit retrofit = null;
     static String Locaction = "Irvine";
-    static final String BASE_URL = "https://api.themoviedb.org/3/";
-    static final String TAG = MainActivity.class.getSimpleName();
+    static final String BASE_URL = "https://api.yelp.com/v3/";
+    static final String TAG = WelcomeActivity.class.getSimpleName();
 
-    private RestaurantListAdapter1 restaurantListAdapter;
+    private SearchRestaurantListAdapter restaurantListAdapter;
     private RecyclerView recyclerView;
     private String queryString;
     private SearchView query;
@@ -45,7 +45,7 @@ public class SearchResultActivity extends AppCompatActivity {
         query.setQueryHint(queryString);
 
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurantListAdapter = new RestaurantListAdapter1(restaurants);
+        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants);
         connect();
         // recyclerView
         recyclerView = findViewById(R.id.rvSearchRestaurantList);

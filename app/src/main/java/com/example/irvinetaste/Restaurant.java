@@ -62,7 +62,24 @@ public class Restaurant {
     public String getImgUrl(){
         return imgUrl;
     }
-    public String getId(){
+
+    public String getId() {
         return id;
+    }
+
+    public List<HashMap<String, String>> getCategories(){
+        return categories;
+    }
+
+    public List<String> getTransactions() {
+        return transactions;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }

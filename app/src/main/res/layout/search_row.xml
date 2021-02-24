@@ -8,33 +8,60 @@
     android:padding="10dp" >
 
     <ImageView
-        android:id="@+id/ivMovie"
+        android:id="@+id/searchRestaurantImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/searchName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tvTitle"
+        android:text="@string/search_restaurant_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:id="@+id/tvReleaseDate"
+        android:id="@+id/searchDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tvReleaseDate" />
+        android:text="distance" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/searchPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/price" />
+
+        <TextView
+            android:id="@+id/searchCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="categories" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tvVote"
+        android:id="@+id/searchAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tvVote" />
+        android:text="address" />
 
     <TextView
-        android:id="@+id/tvOverview"
+        android:id="@+id/searchDelivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tvOverview" />
+        android:text="delivery" />
+
+
 </LinearLayout>

@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class RestaurantListAdapter1 extends RecyclerView.Adapter<RestaurantListAdapter1.ViewHolder>{
+public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRestaurantListAdapter.ViewHolder>{
 
     private List<Restaurant> mData;
-    RestaurantListAdapter1(List<Restaurant> data) {
+    SearchRestaurantListAdapter(List<Restaurant> data) {
         this.mData = data;
     }
 
@@ -34,13 +36,20 @@ public class RestaurantListAdapter1 extends RecyclerView.Adapter<RestaurantListA
         Restaurant restaurant = mData.get(position);
 
         // todo change text
-        holder.name.setText(restaurant.getTitle());
-        holder.rating.setText(restaurant.getReleaseDate());
-        holder.price.setText(String.valueOf(restaurant.getVoteAverage()));
-        holder.tvOverview.setText(restaurant.getOverview());
+        holder.name.setText(restaurant.getName());
+        holder.rating.setText(restaurant.getRating().toString());
+        holder.price.setText(restaurant.getPrice());
+        Location location = restaurant.getLocation();
+//        holder.displayAddress.setText(location.get("display_address"));
+        //holder.delivery
+        holder.distance.setText(restaurant.getDistance().toString());
+        List<HashMap<String, String>>categories = restaurant.getCategories();
+        String categoriesStr = categories.stream().map(node -> node.get("title")).collect(Collectors.toList()).toString();
+        holder.categories.setText(categoriesStr.substring(1, categoriesStr.length()-1));
+
 
         // todo load view
-        Picasso.get().load(restaurant.getPosterPath()).into(holder.restaurantImg);
+        Picasso.get().load(restaurant.getImgUrl()).into(holder.restaurantImg);
     }
 
     @Override
@@ -58,15 +67,20 @@ public class RestaurantListAdapter1 extends RecyclerView.Adapter<RestaurantListA
         TextView delivery;
         TextView takeout;
         TextView distance;
+        TextView categories;
         ImageView restaurantImg;
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.tvTitle);
-            rating = itemView.findViewById(R.id.tvReleaseDate);
-            price = itemView.findViewById(R.id.tvVote);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            restaurantImg = itemView.findViewById(R.id.ivMovie);
+            name = itemView.findViewById(R.id.searchName);
+            rating = itemView.findViewById(R.id.searchPrice);
+            price = itemView.findViewById(R.id.searchAddress);
+            displayAddress = itemView.findViewById(R.id.searchAddress);
+            distance = itemView.findViewById(R.id.searchDistance);
+            delivery = itemView.findViewById(R.id.searchDelivery);
+            categories = itemView.findViewById(R.id.searchCategories);
+
+            restaurantImg = itemView.findViewById(R.id.searchRestaurantImg);
         }
     }
 
