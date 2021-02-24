@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-                System.out.println(canLogin);
                 if(canLogin){
                     Toast.makeText(LoginActivity.this,"login successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, PositionAuthActivity.class);
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     AlertDialog textTips = new AlertDialog.Builder(LoginActivity.this)
-                            .setTitle("Warn:")
+                            .setTitle("Warning:")
                             .setMessage("Wrong phone number or wrong password, Please input again")
                             .create();
                     textTips.show();
