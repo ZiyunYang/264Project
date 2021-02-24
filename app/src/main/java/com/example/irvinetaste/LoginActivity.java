@@ -3,6 +3,7 @@ package com.example.irvinetaste;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -21,19 +22,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/*
+TODO
+bug: first login fail and then enter true input , will fail too.
+ */
 public class LoginActivity extends AppCompatActivity {
 
-    protected static String signIn_state = "200";
     private Button loginButton;
     private EditText usernameText;
     private EditText passwordText;
+    private Boolean canLogin = false;
+    protected static String sin_state = "200";
 
-    private boolean can_login = false;
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
@@ -41,25 +45,21 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.login);
         usernameText = (EditText) findViewById(R.id.username);
         passwordText = (EditText) findViewById(R.id.password);
-        can_login = false;
-
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                usernameText = (EditText) findViewById(R.id.username);
-                passwordText = (EditText) findViewById(R.id.password);
 
-                SignInThread signInThread = new SignInThread();
-                Thread thread = new Thread(signInThread);
+                LoginThread loginThread = new LoginThread();
+                Thread thread = new Thread(loginThread);
                 thread.start();
 
-                for(;signIn_state.equals("200");){
+                for(;sin_state.equals("200");){
 
                 }
 
-                System.out.println("before the switch" + can_login);
-                if(can_login){
+                System.out.println(canLogin);
+                if(canLogin){
                     Toast.makeText(LoginActivity.this,"login successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, PositionAuthActivity.class);
 
@@ -69,10 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                             .setTitle("Warn:")
                             .setMessage("Wrong phone number or wrong password, Please input again")
                             .create();
-
                     textTips.show();
-
                 }
+
 
             }
         });
@@ -80,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private class SignInThread implements Runnable{
+    class LoginThread implements Runnable{
 
         private String driver = DataSet.getDriver();
         private String url = DataSet.getUrl();
@@ -98,8 +97,6 @@ public class LoginActivity extends AppCompatActivity {
             }
             return conn;
         }
-
-
         @Override
         public void run() {
             Connection conn = getConnection();
@@ -108,29 +105,27 @@ public class LoginActivity extends AppCompatActivity {
                 //create Statement object
                 Statement stmt = conn.createStatement();
                 //execute sql and get a ResultSet
-                System.out.println(usernameText.getText().toString());
-                System.out.println(passwordText.getText().toString());
                 String sql = "SELECT * FROM user where phoneNumber = '"+usernameText.getText().toString()+"' and password = '"+passwordText.getText().toString()+"'";
+                System.out.println(sql);
                 ResultSet rs = stmt.executeQuery(sql);
 
-
-
                 if (rs.next()) {
-                    can_login = true;
+                    //login success
+                    canLogin = true;
                 } else {
                     //login fails
-                    can_login = false;
+                    canLogin = false;
                 }
 
                 rs.close();
                 stmt.close();
                 conn.close();
 
+                LoginActivity.sin_state = "1";
+
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-            signIn_state = "1";
         }
     }
 
