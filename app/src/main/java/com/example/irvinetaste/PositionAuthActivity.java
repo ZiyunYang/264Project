@@ -24,7 +24,8 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
     private Button authYesButton;
     private Button authNoButton;
     private MapView mapView;
-    private Marker IrvineMark;
+    private double latitude = 0.0;
+    private double longitude = 0.0;
 
 
     @Override
@@ -46,8 +47,9 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PositionAuthActivity.this,HomepageActivity.class);
-                intent.putExtra("latitude",IrvineMark.getPosition().latitude);
-                intent.putExtra("longitude",IrvineMark.getPosition().longitude);
+                intent.putExtra("latitude",latitude);
+                intent.putExtra("longitude",longitude);
+                System.out.println(latitude + " the location is " + longitude);
                 startActivity(intent);
             }
         });
@@ -67,12 +69,34 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         final LatLng irvineLocation = new LatLng(34.04,-118.15);
-        IrvineMark = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
+        latitude = irvineLocation.latitude;
+        longitude = irvineLocation.longitude;
+        Marker IrvineMark = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
 
 
         UiSettings uiSettings = googleMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setCompassEnabled(true);
+
+        googleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener(){
+
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                latitude = IrvineMark.getPosition().latitude;
+                longitude = IrvineMark.getPosition().longitude;
+            }
+        });
+
     }
 
     @Override
