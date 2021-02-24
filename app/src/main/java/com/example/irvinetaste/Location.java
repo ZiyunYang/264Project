@@ -7,4 +7,8 @@ import java.util.List;
 public class Location {
     @SerializedName("display_address")
     private List<String> address;
+
+    public List<String> address() {
+        return address;
+    }
 }

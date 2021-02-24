@@ -2,6 +2,7 @@ package com.example.irvinetaste;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Restaurant {
@@ -27,6 +28,12 @@ public class Restaurant {
     private Location location;
     @SerializedName("photos")
     private List<String> photos;
+    @SerializedName("categories")
+    private List<HashMap<String, String>> categories;
+    @SerializedName("transactions")
+    private List<String> transactions;
+    @SerializedName("distance")
+    private Double distance;
 
     public Restaurant(String id,String name, String url, boolean isClaimed,boolean isClosed, String phone,
                       int reviewCount, Float rating, String price, Location location, List<String> photos){
@@ -55,7 +62,24 @@ public class Restaurant {
     public String getImgUrl(){
         return imgUrl;
     }
-    public String getId(){
+
+    public String getId() {
         return id;
+    }
+
+    public List<HashMap<String, String>> getCategories(){
+        return categories;
+    }
+
+    public List<String> getTransactions() {
+        return transactions;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }

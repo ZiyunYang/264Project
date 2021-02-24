@@ -23,10 +23,10 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("searchQuery", queryString);
         startActivity(intent);
     }
-//
-//    public void clickBack(View view){
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//    }
+
+    public void clickBack(View view){
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
+    }
 
 }
