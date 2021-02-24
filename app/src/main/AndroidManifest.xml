@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IrvineTaste">
-        <activity android:name=".ForgetAccountActivity"></activity>
+        <activity android:name=".BookmarkActivity"/>
+        <activity android:name=".ForgetAccountActivity"/>
         <activity android:name=".HomepageActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".PositionAuthActivity" />
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".SearchActivity">
-        </activity>
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RestaurantActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".SearchResultActivity"/>
+        <activity android:name=".SearchActivity"/>
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

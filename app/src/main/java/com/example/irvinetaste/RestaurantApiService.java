@@ -1,12 +1,23 @@
 package com.example.irvinetaste;
 
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @author zhangzhenyu
  * @date 2021/2/23 下午1:59
  */
-public interface RestaurantApiService {
 
+public interface RestaurantApiService {
+    @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
+    @GET("business/search")
+    public Call<List<Restaurant>> getRestaurants(@Query("term") String term, @Query("latitude") double latitude, @Query("longitude") double longitude, @Query("radius") int radius,
+                                           @Query("categories") String categories, @Query("limit") int limit, @Query("offset") int offset, @Query("price") String price,
+                                           @Query("open_now") Boolean openNow);
 
 }
