@@ -9,10 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IrvineTaste">
-        <activity android:name=".HomepageActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".PositionAuthActivity"></activity>
+        <activity android:name=".ForgetAccountActivity"></activity>
+        <activity android:name=".HomepageActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".PositionAuthActivity" />
+        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".SearchActivity">
+        </activity>
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
