@@ -14,7 +14,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".PositionAuthActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".SearchResultActivity"></activity>
+        <activity android:name=".SearchActivity">
+        </activity>
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
