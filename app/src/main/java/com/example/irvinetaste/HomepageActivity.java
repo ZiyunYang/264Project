@@ -55,7 +55,7 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NearbyRestaurants> call, Response<NearbyRestaurants> response) {
                 restaurants = response.body().getNearbyRestaurants();
-                recyclerView.setAdapter(new RestaurantListAdapter(restaurants));
+                recyclerView.setAdapter(new RestaurantListAdapter(restaurants,HomepageActivity.this));
             }
 
             @Override
