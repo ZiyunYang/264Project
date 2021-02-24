@@ -8,40 +8,41 @@
 
     <ImageView
         android:id="@+id/rest_pic"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/rest_name"
-        android:layout_width="250dp"
+        android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="305dp"
         android:layout_marginEnd="250dp"
         android:text="TextView"
         android:textSize="10sp" />
 
     <TextView
         android:id="@+id/rest_price"
-        android:layout_width="50dp"
+        android:layout_width="20dp"
         android:layout_height="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="470dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="305dp"
+        android:layout_marginEnd="150dp"
         android:textSize="10sp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/rest_rating"
-        android:layout_width="50dp"
+        android:layout_width="20dp"
         android:layout_height="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="470dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="305dp"
+        android:layout_marginEnd="100dp"
         android:textSize="10sp"
         android:text="TextView" />
 
