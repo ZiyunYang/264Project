@@ -54,7 +54,7 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
                 restaurants = response.body();
-                recyclerView.setAdapter(new MovieListAdapter(movies));
+                recyclerView.setAdapter(new RestaurantListAdapter(restaurants));
             }
 
             @Override

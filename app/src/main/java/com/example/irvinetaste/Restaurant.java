@@ -14,7 +14,7 @@ public class Restaurant {
     @SerializedName("is_closed")
     private Boolean isClosed;
     @SerializedName("display_phone")
-    private String display_phone;
+    private String displayPhone;
     @SerializedName("review_count")
     private Integer reviewCount;
     @SerializedName("rating")
@@ -26,6 +26,30 @@ public class Restaurant {
     @SerializedName("photos")
     private List<String> photos;
 
+    public Restaurant(String name, String url, boolean isClaimed,boolean isClosed, String phone,
+                      int reviewCount, Float rating, String price, Location location, List<String> photos){
+        this.name=name;
+        this.imgUrl=url;
+        this.isClaimed=isClaimed;
+        this.isClosed=isClosed;
+        this.displayPhone = phone;
+        this.reviewCount=reviewCount;
+        this.rating=rating;
+        this.price=price;
+        this.location=location;
+        this.photos=photos;
+    }
 
-
+    public String getName(){
+        return name;
+    }
+    public String getPrice(){
+        return price;
+    }
+    public Float getRating(){
+        return rating;
+    }
+    public String getImgUrl(){
+        return imgUrl;
+    }
 }
