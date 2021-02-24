@@ -7,10 +7,16 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
 
+import org.bson.BsonArray;
+import org.bson.BsonInt32;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author zhangzhenyu
@@ -40,6 +46,9 @@ public class MongoDBUtil {
 
     }
 
+    /*
+    get the specified collection by its name
+     */
     public void getCollection(String collName){
         MongoCollection<Document> collection = db.getCollection(collName);
 
@@ -66,13 +75,28 @@ public class MongoDBUtil {
 
     /**
      * Insert dbObject into collection.
-     * @param dbObject
+     * @param document
      * @param collName
      */
-    public void insert(DBObject dbObject, String collName)
+    public void insert(Document document, String collName)
     {
-
+        MongoCollection collection = db.getCollection(collName);
+        collection.insertOne(document);
     }
+
+    /*
+    find the sequence_value in counter collection and increase the value by 1
+     */
+    public int findAndModify(String collName, String sequenceName){
+        MongoCollection collection = db.getCollection(collName);
+        Document filterDocument = new Document("_id",sequenceName);
+        Document updateDocument = new Document("$inc",new Document("sequence_value",1));
+        Object result = collection.findOneAndUpdate(filterDocument,updateDocument);
+        return ((Document)result).getInteger("sequence_value");
+    }
+
+
+
 
     /**
      * Insert dbObject list into collection.
@@ -119,7 +143,5 @@ public class MongoDBUtil {
     {
         return 0;
     }
-
-
 
 }
