@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/ivMovie"
+        android:id="@+id/rest_pic"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
