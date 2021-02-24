@@ -15,9 +15,13 @@ import retrofit2.http.Query;
 
 public interface RestaurantApiService {
     @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
-    @GET("business/search")
-    public Call<List<Restaurant>> getRestaurants(@Query("term") String term, @Query("latitude") double latitude, @Query("longitude") double longitude, @Query("radius") int radius,
+    @GET("businesses/search")
+    public Call<NearbyRestaurants> getRestaurants(@Query("term") String term, @Query("latitude") double latitude, @Query("longitude") double longitude, @Query("radius") int radius,
                                            @Query("categories") String categories, @Query("limit") int limit, @Query("offset") int offset, @Query("price") String price,
                                            @Query("open_now") Boolean openNow);
+
+    @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
+    @GET("businesses/search")
+    public Call<NearbyRestaurants> getRecommend( @Query("latitude") float latitude, @Query("longitude") float longitude);
 
 }
