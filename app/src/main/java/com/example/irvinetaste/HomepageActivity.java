@@ -24,19 +24,20 @@ public class HomepageActivity extends AppCompatActivity {
     static final String BASE_URL = "https://api.yelp.com/v3/";
     static Retrofit retrofit = null;
     List<Restaurant> restaurants;
-    final static String API_KEY = "Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-" +
-            "VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx";
     private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-
-        connect( 0.0,0.0);
+        Intent intent = getIntent();
+        float latitude = intent.getIntExtra("latitude", 0);
+        float longitude = intent.getIntExtra("longitude", 0);
+        connect( latitude,longitude);
 
     }
-    private void connect(double latitude, double longtitude){
+    private void connect(float latitude, float longitude){
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -49,7 +50,7 @@ public class HomepageActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Call<NearbyRestaurants>  call= restaurantApiService.getRecommend((float) 37.786882,(float)-122.399972);
+        Call<NearbyRestaurants>  call= restaurantApiService.getRecommend(latitude,longitude);
         call.enqueue(new Callback<NearbyRestaurants>() {
             @Override
             public void onResponse(Call<NearbyRestaurants> call, Response<NearbyRestaurants> response) {
