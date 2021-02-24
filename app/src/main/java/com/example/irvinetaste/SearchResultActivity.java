@@ -24,7 +24,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
     static Retrofit retrofit = null;
-    static String Locaction = "Irvine";
+    static String Location = "Irvine";
     static final String BASE_URL = "https://api.yelp.com/v3/";
     static final String TAG = WelcomeActivity.class.getSimpleName();
 
@@ -41,7 +41,6 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         queryString = intent.getStringExtra("searchQuery");
         query = findViewById(R.id.search_result_bar);
-
         query.setQueryHint(queryString);
 
         List<Restaurant> restaurants = new ArrayList<>();
@@ -65,11 +64,12 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
         RestaurantApiService restaurantApiService = retrofit.create(RestaurantApiService.class);
-        Call<SearchRestaurantResponse> call = restaurantApiService.getRestaurantsByLocation(queryString, Locaction);
+        Call<SearchRestaurantResponse> call = restaurantApiService.getRestaurantsByLocation(queryString, Location);
 
         call.enqueue(new Callback<SearchRestaurantResponse>() {
             @Override
             public void onResponse(Call<SearchRestaurantResponse> call, Response<SearchRestaurantResponse> response) {
+                System.out.println("Restaurant: " + response.body().getRestaurantList());
                 restaurantListAdapter.updateList(response.body().getRestaurantList());
             }
 
@@ -84,5 +84,10 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
         System.out.println("i am back");
+    }
+
+    public void clickSearchRestaurant(View view) {
+        Intent intent = new Intent(this, Restaurant.class);
+        startActivity(intent);
     }
 }

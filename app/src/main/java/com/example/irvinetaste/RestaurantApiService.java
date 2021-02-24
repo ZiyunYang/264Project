@@ -30,6 +30,6 @@ public interface RestaurantApiService {
     // https://api.yelp.com/v3/businesses/search?location=irvine&term=delis
     @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
     @GET("businesses/search")
-    Call<SearchRestaurantResponse> getRestaurantsByLocation(@Query("term") String term, @Query("location") String location);
+    public Call<SearchRestaurantResponse> getRestaurantsByLocation(@Query("term") String term, @Query("location") String location);
 
 }

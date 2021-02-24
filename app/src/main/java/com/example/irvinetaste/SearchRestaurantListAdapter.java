@@ -37,12 +37,26 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
 
         // todo change text
         holder.name.setText(restaurant.getName());
-        holder.rating.setText(restaurant.getRating().toString());
+//        holder.rating.setText(restaurant.getRating().toString());
         holder.price.setText(restaurant.getPrice());
         Location location = restaurant.getLocation();
-//        holder.displayAddress.setText(location.get("display_address"));
-        //holder.delivery
-        holder.distance.setText(restaurant.getDistance().toString());
+
+        String address = location.address().toString();
+
+        List<String>transactions = restaurant.getTransactions();
+        String delivery = "X Delivery", takeout = "X Takeout";
+        if(transactions.indexOf("delivery")!= -1){
+            delivery = "√ Delivery";
+        }
+        if(transactions.indexOf("takeout")!= -1){
+            takeout = "√ Takeout";
+        }
+
+        holder.address.setText(address.substring(1, address.length()-1));
+        holder.delivery.setText(delivery);
+        holder.takeout.setText(takeout);
+        String distance = String.format("%s km", Double.valueOf(restaurant.getDistance()).intValue());
+        holder.distance.setText(distance);
         List<HashMap<String, String>>categories = restaurant.getCategories();
         String categoriesStr = categories.stream().map(node -> node.get("title")).collect(Collectors.toList()).toString();
         holder.categories.setText(categoriesStr.substring(1, categoriesStr.length()-1));
@@ -59,11 +73,11 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        // todo 存什么
         TextView name;
         TextView rating;
         TextView price;
         TextView displayAddress;
+        TextView address;
         TextView delivery;
         TextView takeout;
         TextView distance;
@@ -73,11 +87,13 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.searchName);
-            rating = itemView.findViewById(R.id.searchPrice);
-            price = itemView.findViewById(R.id.searchAddress);
+//            rating = itemView.findViewById(R.id.searchPrice);
+            price = itemView.findViewById(R.id.searchPrice);
+            address = itemView.findViewById(R.id.searchAddress);
             displayAddress = itemView.findViewById(R.id.searchAddress);
             distance = itemView.findViewById(R.id.searchDistance);
             delivery = itemView.findViewById(R.id.searchDelivery);
+            takeout = itemView.findViewById(R.id.searchTakeout);
             categories = itemView.findViewById(R.id.searchCategories);
 
             restaurantImg = itemView.findViewById(R.id.searchRestaurantImg);
