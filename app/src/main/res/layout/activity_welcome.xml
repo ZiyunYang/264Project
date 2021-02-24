@@ -20,6 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="488dp"
         android:layout_marginRight="158dp"
+        android:onClick="onClickSignIn"
         android:text="Sign In" />
 
     <Button
@@ -30,6 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="556dp"
         android:layout_marginRight="156dp"
+        android:onClick="onClickSignUp"
         android:text="Sign Up" />
 
     <Button
@@ -40,6 +42,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="15dp"
         android:layout_marginRight="39dp"
+        android:onClick="onClickForget"
         android:text="Forget Your Account Or Password" />
 
 </RelativeLayout>
