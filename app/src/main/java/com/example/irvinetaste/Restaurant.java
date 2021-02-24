@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Restaurant {
+    @SerializedName("id")
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("image_url")
@@ -26,8 +28,9 @@ public class Restaurant {
     @SerializedName("photos")
     private List<String> photos;
 
-    public Restaurant(String name, String url, boolean isClaimed,boolean isClosed, String phone,
+    public Restaurant(String id,String name, String url, boolean isClaimed,boolean isClosed, String phone,
                       int reviewCount, Float rating, String price, Location location, List<String> photos){
+        this.id=id;
         this.name=name;
         this.imgUrl=url;
         this.isClaimed=isClaimed;
@@ -51,5 +54,8 @@ public class Restaurant {
     }
     public String getImgUrl(){
         return imgUrl;
+    }
+    public String getId(){
+        return id;
     }
 }

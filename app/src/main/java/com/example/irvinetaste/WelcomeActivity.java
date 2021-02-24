@@ -16,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onClickSignUp(View view){
         // just for test
-        Intent intent = new Intent(this,SignupActivity.class);
+        Intent intent = new Intent(this,HomepageActivity.class);
         startActivity(intent);
     }
 
