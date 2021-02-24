@@ -24,6 +24,7 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
     private Button authYesButton;
     private Button authNoButton;
     private MapView mapView;
+    private Marker IrvineMark;
 
 
     @Override
@@ -44,7 +45,10 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
 
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(PositionAuthActivity.this,HomepageActivity.class);
+                intent.putExtra("latitude",IrvineMark.getPosition().latitude);
+                intent.putExtra("longitude",IrvineMark.getPosition().longitude);
+                startActivity(intent);
             }
         });
 
@@ -52,7 +56,10 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
 
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(PositionAuthActivity.this,HomepageActivity.class);
+                intent.putExtra("latitude",34.04);
+                intent.putExtra("longitude",-118.15);
+                startActivity(intent);
             }
         });
     }
@@ -60,7 +67,7 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(GoogleMap googleMap) {
         final LatLng irvineLocation = new LatLng(34.04,-118.15);
-        Marker Irvine = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
+        IrvineMark = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
 
 
         UiSettings uiSettings = googleMap.getUiSettings();
