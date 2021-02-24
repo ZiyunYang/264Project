@@ -28,7 +28,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         ViewHolder(View itemView) {
             super(itemView);
             restaurantImg = itemView.findViewById(R.id.rest_pic);
-            price = itemView.findViewById(R.id.rest_pricing);
+            price = itemView.findViewById(R.id.rest_price);
             rating = itemView.findViewById(R.id.rest_rating);
             name = itemView.findViewById(R.id.rest_name);
         }
@@ -46,6 +46,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         holder.name.setText(restaurant.getName());
         holder.rating.setText(restaurant.getRating()+"");
         holder.price.setText(restaurant.getPrice());
+        System.out.println("1----"+restaurant.getImgUrl());
         Picasso.get().load(restaurant.getImgUrl()).into(holder.restaurantImg);
     }
 

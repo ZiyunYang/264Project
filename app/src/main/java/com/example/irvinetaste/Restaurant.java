@@ -7,7 +7,7 @@ import java.util.List;
 public class Restaurant {
     @SerializedName("name")
     private String name;
-    @SerializedName("img_url")
+    @SerializedName("image_url")
     private String imgUrl;
     @SerializedName("is_claimed")
     private Boolean isClaimed;
