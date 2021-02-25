@@ -55,7 +55,7 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
         holder.address.setText(address.substring(1, address.length()-1));
         holder.delivery.setText(delivery);
         holder.takeout.setText(takeout);
-        String distance = String.format("%s km", Double.valueOf(restaurant.getDistance()).intValue());
+        String distance = String.format("%s m", Double.valueOf(restaurant.getDistance()).intValue());
         holder.distance.setText(distance);
         List<HashMap<String, String>>categories = restaurant.getCategories();
         String categoriesStr = categories.stream().map(node -> node.get("title")).collect(Collectors.toList()).toString();
