@@ -17,22 +17,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".PositionAuthActivity" />
-<<<<<<< HEAD
-        <activity android:name=".SearchResultActivity"></activity>
-        <activity android:name=".SearchActivity">
-        </activity>
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".BookmarkActivity" />
-        <activity android:name=".RestaurantActivity" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".MainActivity">
-=======
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".SearchResultActivity"/>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".WelcomeActivity">
->>>>>>> develop
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
