@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void clickBack(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }
 

@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".HomepageActivity">
 
-    <SearchView
+    <ImageButton
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="17dp"
-        android:layout_marginRight="108dp" />
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="108dp"
+        android:onClick="onClickSearch"
+        android:background="@drawable/searchicon"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/location"
@@ -34,16 +37,18 @@
         android:layout_marginTop="17dp"
         android:layout_marginRight="11dp"
         android:text="profile"
+        android:onClick="onClickProfile"
         android:textSize="7dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestaurantList"
-        android:layout_width="327dp"
-        android:layout_height="366dp"
+        android:layout_width="320dp"
+        android:layout_height="609dp"
         android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+
         android:layout_marginStart="8dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginRight="273dp"
+        android:layout_marginTop="84dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
