@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/cost"
         android:layout_width="247dp"
         android:layout_height="53dp"
         android:layout_marginStart="127dp"
