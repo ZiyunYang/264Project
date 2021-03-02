@@ -2,6 +2,8 @@ package com.example.irvinetaste;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +38,11 @@ public class SearchResultActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String queryString;
     private SearchView query;
+    private String sort;
+    private String sort_by;
+    private AlertDialog alertDialog;
+    private Button sortBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,23 @@ public class SearchResultActivity extends AppCompatActivity {
         query = findViewById(R.id.search_result_bar);
         query.setQueryHint(queryString);
 
+        sort = intent.getStringExtra("sort");
+        if (sort == null) {
+            sort = "Recommended";
+        }
+        switch(sort){
+            case "Distance":
+                sort_by = "distance";
+                break;
+            case "Rating":
+                sort_by = "rating";
+                break;
+            case "Most Reviewed":
+                sort_by = "review_count";
+                break;
+            default:
+                sort_by = "best_match";
+        }
         List<Restaurant> restaurants = new ArrayList<>();
         restaurantListAdapter = new SearchRestaurantListAdapter(restaurants);
         connect();
@@ -64,7 +92,7 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
         RestaurantApiService restaurantApiService = retrofit.create(RestaurantApiService.class);
-        Call<SearchRestaurantResponse> call = restaurantApiService.getRestaurantsByLocation(queryString, Location);
+        Call<SearchRestaurantResponse> call = restaurantApiService.getRestaurantsByLocation(queryString, Location, sort_by);
 
         call.enqueue(new Callback<SearchRestaurantResponse>() {
             @Override
@@ -88,6 +116,41 @@ public class SearchResultActivity extends AppCompatActivity {
 
     public void clickSearchRestaurant(View view) {
         Intent intent = new Intent(this, Restaurant.class);
+        startActivity(intent);
+    }
+
+    public void showSortInSearch(View view){
+        final String[] items = {"Recommended", "Distance", "Rating", "Most Reviewed"};
+        final List<String> itemsList = Arrays.asList(items);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        int index = itemsList.indexOf(sort);
+        if (index == -1) index = 0;
+        alertBuilder.setSingleChoiceItems(items, index, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(SearchResultActivity.this, items[i], Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+                refresh(items[i]);
+            }
+        });
+
+        alertDialog = alertBuilder.create();
+        alertDialog.show();
+    }
+
+    public void refresh(String item) {
+        finish();
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putExtra("searchQuery", queryString);
+        intent.putExtra("sort", item);
+        startActivity(intent);
+    }
+
+    public void search2(View view){
+        query = findViewById(R.id.search_result_bar);
+        queryString = query.getQuery().toString();
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putExtra("searchQuery", queryString);
         startActivity(intent);
     }
 }
