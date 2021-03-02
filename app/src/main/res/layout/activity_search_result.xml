@@ -25,6 +25,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="B"
+                android:onClick="clickSearchBar"
                 android:textSize="20sp" />
 
             <SearchView
@@ -39,21 +40,31 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/search_result_search"
                 android:layout_width="14dp"
                 android:layout_height="38dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="search"
+                android:onClick="search2"
                 android:textSize="15sp" />
 
         </LinearLayout>
 
+
+        <Button
+            android:id="@+id/searchSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:onClick="showSortInSearch"
+            android:text="sort" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchRestaurantList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="clickSearchRestaurant"/>
+            android:layout_width="421dp"
+            android:layout_height="612dp"
+            android:onClick="clickSearchRestaurant" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

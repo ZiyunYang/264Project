@@ -35,12 +35,10 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
 
         Restaurant restaurant = mData.get(position);
 
-        // todo change text
         holder.name.setText(restaurant.getName());
-//        holder.rating.setText(restaurant.getRating().toString());
+        holder.rating.setText(restaurant.getRating().toString());
         holder.price.setText(restaurant.getPrice());
         Location location = restaurant.getLocation();
-
         String address = location.address().toString();
 
         List<String>transactions = restaurant.getTransactions();
@@ -87,7 +85,7 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.searchName);
-//            rating = itemView.findViewById(R.id.searchPrice);
+            rating = itemView.findViewById(R.id.searchRating);
             price = itemView.findViewById(R.id.searchPrice);
             address = itemView.findViewById(R.id.searchAddress);
             displayAddress = itemView.findViewById(R.id.searchAddress);
