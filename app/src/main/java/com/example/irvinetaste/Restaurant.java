@@ -82,4 +82,6 @@ public class Restaurant {
     public Location getLocation() {
         return location;
     }
+
+    public String getDisplayPhone() { return displayPhone; }
 }

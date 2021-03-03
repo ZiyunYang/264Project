@@ -7,83 +7,83 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/address"
         android:layout_width="333dp"
         android:layout_height="62dp"
         android:text="address"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="265dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image"
         android:layout_width="351dp"
         android:layout_height="194dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="34dp"
-        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/phone"
         android:layout_width="328dp"
         android:layout_height="69dp"
         android:text="Phone"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="341dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
+        android:id="@+id/cost"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
         android:text="avg cost"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="441dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.607" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="149dp"
-        android:layout_height="32dp"
+        android:id="@+id/rating"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
         android:text="Rate"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="445dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.602" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="332dp"
-        android:layout_height="87dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="505dp"
+        android:id="@+id/nearby"
+        android:layout_width="334dp"
+        android:layout_height="208dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.931" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="335dp"
-        android:layout_height="99dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="616dp"
+    <Button
+        android:id="@+id/bookmark"
+        android:layout_width="87dp"
+        android:layout_height="42dp"
+        android:text="Bookmark"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.606" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

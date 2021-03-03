@@ -1,60 +1,53 @@
 package com.example.irvinetaste;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class User {
-    int userId;
-    String username;
-    String phoneNum;
-    String password;
-    List<String> bookmarks;
+    static int userId;
+    static String username;
+    static String phoneNum;
+    static String password;
+    static List<Bookmark> bookmarks;
 
-    public User(String name, String phone, String pw) {
-        username = name;
-        phoneNum = phone;
-        password = pw;
-        bookmarks = new LinkedList<>();
-    }
-
-
-    public int getUserId() {
+    public static int getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public static void setUserId(int userId) {
+        userId = userId;
     }
 
-    public String getUsername() { return username; }
+    public static String getUsername() { return username; }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static void setUsername(String username) {
+        username = username;
     }
 
-    public String getPhoneNum() { return phoneNum; }
+    public static String getPhoneNum() { return phoneNum; }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public static void setPhoneNum(String phoneNum) {
+        phoneNum = phoneNum;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public static void setPassword(String password) {
+        password = password;
     }
 
-    public void setBookmarks(List<String> bookmarks) {
-        this.bookmarks = bookmarks;
+    public static void setBookmarks(List<String> bookmarks) {
+        bookmarks = bookmarks;
     }
 
+    public static List<Bookmark> getBookmarks() { return bookmarks; }
 
-    public List<String> getBookmarks() { return bookmarks; }
+    public static void addBookmark(int id, String n, String url) { bookmarks.add(new Bookmark(id, n, url)); }
 
-    public void addBookmark(String id) { this.bookmarks.add(id); }
-
-    public void removeBookmark(String id) { this.bookmarks.remove(id); }
+    public static void removeBookmark(Bookmark bm) { bookmarks.remove(bm); }
 
 }
