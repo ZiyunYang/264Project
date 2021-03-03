@@ -41,6 +41,16 @@ realm {
     syncEnabled = true
 }
 
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "326a1ec5e251c"
+    appSecret "c5c5f5cc09187829616a182076895aab"
+    SMSSDK {}
+}
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'

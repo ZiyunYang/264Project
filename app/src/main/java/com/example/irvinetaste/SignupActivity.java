@@ -19,6 +19,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+
+//implementation of phone verify: https://www.mob.com/wiki/detailed?wiki=SMSSDK_for_Android_kuaisujicheng&id=23
 public class SignupActivity extends AppCompatActivity {
 
     private Button verifyCodeBtn,signUpBtn;
@@ -28,7 +32,7 @@ public class SignupActivity extends AppCompatActivity {
     private boolean canSignUp = false;
     protected static String signUp_state = "200";
 
-    //TODO need to add SMS SDK
+    //TODO need to add SMS SDK  verifyCodeBtn, VerifyCodeEdt, phoneNumberEdt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
