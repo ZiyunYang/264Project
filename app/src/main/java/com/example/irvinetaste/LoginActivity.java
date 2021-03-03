@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.irvinetaste.daos.UserDao;
 import com.example.irvinetaste.utils.DataSet;
 
 import java.sql.Connection;
@@ -61,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                 if(canLogin){
                     Toast.makeText(LoginActivity.this,"login successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, PositionAuthActivity.class);
-
                     startActivity(intent);
                 }else{
                     AlertDialog textTips = new AlertDialog.Builder(LoginActivity.this)
