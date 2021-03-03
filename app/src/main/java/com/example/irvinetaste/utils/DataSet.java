@@ -25,6 +25,4 @@ public class DataSet {
     public static String getPassword(){
         return password;
     }
-
-
 }

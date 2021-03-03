@@ -14,4 +14,8 @@ public class NearbyRestaurants {
     public List<Restaurant>  getNearbyRestaurants() {
         return this.restaurants;
     }
+
+    public Restaurant get(int idx) { return restaurants.get(idx); }
+
+    public int size() { return restaurants.size(); }
 }

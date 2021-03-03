@@ -41,8 +41,8 @@
 
     <TextView
         android:id="@+id/cost"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
         android:text="avg cost"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.84"
@@ -53,36 +53,37 @@
 
     <TextView
         android:id="@+id/rating"
-        android:layout_width="149dp"
-        android:layout_height="32dp"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
         android:text="Rate"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/menu"
-        android:layout_width="332dp"
-        android:layout_height="87dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintVertical_bias="0.602" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/nearby"
-        android:layout_width="335dp"
-        android:layout_height="99dp"
+        android:layout_width="334dp"
+        android:layout_height="208dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+        app:layout_constraintVertical_bias="0.931" />
+
+    <Button
+        android:id="@+id/bookmark"
+        android:layout_width="87dp"
+        android:layout_height="42dp"
+        android:text="Bookmark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.606" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
