@@ -2,6 +2,8 @@ package com.example.irvinetaste;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.irvinetaste.utils.DataSet;
 import com.example.irvinetaste.utils.PhoneNumberUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,6 +27,7 @@ import java.sql.Statement;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
+//TODO: same phone number can still signUp
 //implementation of phone verify: https://www.mob.com/wiki/detailed?wiki=SMSSDK_for_Android_kuaisujicheng&id=23
 public class SignupActivity extends AppCompatActivity {
 
@@ -31,6 +37,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private boolean canSignUp = false;
     protected static String signUp_state = "200";
+
+    private EventHandler eh;
 
     //TODO need to add SMS SDK  verifyCodeBtn, VerifyCodeEdt, phoneNumberEdt
 
@@ -46,6 +54,83 @@ public class SignupActivity extends AppCompatActivity {
         passwordEdt = findViewById(R.id.password);
         phoneNumberEdt = findViewById(R.id.phoneNumber);
 
+        eh = new EventHandler() {
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+                if (result == SMSSDK.RESULT_COMPLETE){
+                    //回调完成
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                        //提交验证码成功
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SignupActivity.this,"Verify Code correct",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SignupActivity.this,"voice verify sent",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                        //获取验证码成功
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(SignupActivity.this,"Verify Code sent",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
+                        Log.i("test","test");
+                    }
+                }else{
+                    ((Throwable)data).printStackTrace();
+                    Throwable throwable = (Throwable) data;
+                    throwable.printStackTrace();
+                    Log.i("1234",throwable.toString());
+                    try {
+                        JSONObject obj = new JSONObject(throwable.getMessage());
+                        final String des = obj.optString("detail");
+                        if (!TextUtils.isEmpty(des)){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SignupActivity.this,des,Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        SMSSDK.registerEventHandler(eh);
+
+        verifyCodeBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                phoneNumber = phoneNumberEdt.getText().toString();
+                if(!phoneNumber.isEmpty()){
+                    if(PhoneNumberUtils.checkTel(phoneNumber)){ //利用正则表达式获取检验手机号
+                        // 获取验证码
+                        SMSSDK.getVerificationCode("1", phoneNumber);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Please input valid phone number",Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(),"Please input your phone number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                phoneNumber = phoneNumberEdt.getText().toString();
+            }
+        });
+
         signUpBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -58,8 +143,18 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 if(canSignUp){
                     Toast.makeText(SignupActivity.this,"SignUp successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupActivity.this, PositionAuthActivity.class);
 
+                    code = verifyCodeEdt.getText().toString();
+                    if(!code.isEmpty()){
+                        //Submit the verify code
+                        SMSSDK.submitVerificationCode("1", phoneNumber, code);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Please input the verify code",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+
+                    Intent intent = new Intent(SignupActivity.this, PositionAuthActivity.class);
                     startActivity(intent);
                 }else{
                     AlertDialog textTips = new AlertDialog.Builder(SignupActivity.this)
@@ -70,6 +165,12 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        SMSSDK.unregisterEventHandler(eh);
     }
 
     class SignUpThread implements Runnable{
@@ -100,12 +201,13 @@ public class SignupActivity extends AppCompatActivity {
                 String sql = "SELECT * FROM user where phoneNumber = '"+userNameEdt.getText().toString()+"'";
                 ResultSet rs = stmt.executeQuery(sql);
 
+
                 //need to use PhoneNumberUtils to judge whether valid number
                 if (rs.next()) {
-                    //login success
+                    //signUp success
                     canSignUp = false;
                 } else {
-                    //login fails
+                    //signUp fails
                     canSignUp = true;
                     String insertSql = "INSERT INTO user (userName,phoneNumber,password) values ('"+userNameEdt.getText().toString()+"', '"+phoneNumberEdt.getText().toString()+"', '"+passwordEdt.getText().toString()+"')";
                     stmt.execute(insertSql);
