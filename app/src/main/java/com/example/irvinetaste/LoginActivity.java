@@ -23,6 +23,7 @@ import java.sql.Statement;
 
 /*
 TODO
+need to place some little icon before each line
 bug: first login fail and then enter true input , will fail too.
  */
 public class LoginActivity extends AppCompatActivity {
