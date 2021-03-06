@@ -34,6 +34,6 @@ public interface RestaurantApiService {
 
     @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
     @GET("businesses/{id}")
-    public Call<Restaurant> getRestaurantByID(@Path("id") int id);
+    public Call<Restaurant> getRestaurantByID(@Path("id") String id);
 
 }

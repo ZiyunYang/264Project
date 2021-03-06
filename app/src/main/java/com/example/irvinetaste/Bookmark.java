@@ -4,9 +4,9 @@ public class Bookmark {
 
     String name;
     String imageUrl;
-    int restaurantId;
+    String restaurantId;
 
-    public Bookmark(int id, String n, String url) {
+    public Bookmark(String id, String n, String url) {
         restaurantId = id;
         imageUrl = url;
         name = n;
@@ -18,6 +18,6 @@ public class Bookmark {
 
     public String getImageUrl() { return imageUrl; }
 
-    public int getRestaurantId() { return restaurantId; }
+    public String getRestaurantId() { return restaurantId; }
 
 }

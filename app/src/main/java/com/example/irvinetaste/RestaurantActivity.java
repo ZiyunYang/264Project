@@ -29,7 +29,7 @@ public class RestaurantActivity extends AppCompatActivity {
     static Retrofit retrofit = null;
     static final String BASE_URL = "https://api.yelp.com/v3/";
     static final String TAG = WelcomeActivity.class.getSimpleName();
-    private int id;
+    private String id;
     private Restaurant restaurant;
     private String url;
     private String name;
@@ -45,7 +45,8 @@ public class RestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant);
 
         Intent intent = getIntent();
-        id = Integer.parseInt(intent.getStringExtra("id"));
+        //TODO
+        id = intent.getStringExtra("id");
         btn = this.findViewById(R.id.bookmark);
         connect();
 
@@ -97,7 +98,7 @@ public class RestaurantActivity extends AppCompatActivity {
         thread.start();
     }
 
-    public void onClick(Button btn, Consumer c1, Consumer c2, int id) {
+    public void onClick(Button btn, Consumer c1, Consumer c2, String id) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

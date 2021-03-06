@@ -55,7 +55,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
         Picasso.get().load(bm.getImageUrl()).into(holder.imageView);
         holder.restaurantName.setText(bm.getName());
         holder.restaurantName.setOnClickListener(goToRestaurant);
-        onClick(holder.btn, (c) -> removeBookmark((int) c), bm.getRestaurantId());
+        onClick(holder.btn, (c) -> removeBookmark((String) c), bm.getRestaurantId());
     }
 
     private View.OnClickListener goToRestaurant = new View.OnClickListener() {
@@ -66,13 +66,13 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
         }
     };
 
-    public void removeBookmark(int id) {
+    public void removeBookmark(String id) {
         DBThread dbThread = new DBThread(0, id);
         Thread thread = new Thread(dbThread);
         thread.start();
     }
 
-    public void onClick(Button btn, Consumer c, int id) {
+    public void onClick(Button btn, Consumer c, String id) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

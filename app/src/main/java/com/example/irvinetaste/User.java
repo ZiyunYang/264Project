@@ -16,37 +16,37 @@ public class User {
         return userId;
     }
 
-    public static void setUserId(int userId) {
-        userId = userId;
+    public static void setUserId(int id) {
+        userId = id;
     }
 
     public static String getUsername() { return username; }
 
-    public static void setUsername(String username) {
-        username = username;
+    public static void setUsername(String name) {
+        username = name;
     }
 
     public static String getPhoneNum() { return phoneNum; }
 
-    public static void setPhoneNum(String phoneNum) {
-        phoneNum = phoneNum;
+    public static void setPhoneNum(String number) {
+        phoneNum = number;
     }
 
     public static String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        password = password;
+    public static void setPassword(String pwd) {
+        password = pwd;
     }
 
-    public static void setBookmarks(List<String> bookmarks) {
-        bookmarks = bookmarks;
+    public static void setBookmarks(List<Bookmark> bookmarkList) {
+        bookmarks = bookmarkList;
     }
 
     public static List<Bookmark> getBookmarks() { return bookmarks; }
 
-    public static void addBookmark(int id, String n, String url) { bookmarks.add(new Bookmark(id, n, url)); }
+    public static void addBookmark(String id, String n, String url) { bookmarks.add(new Bookmark(id, n, url)); }
 
     public static void removeBookmark(Bookmark bm) { bookmarks.remove(bm); }
 

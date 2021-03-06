@@ -57,6 +57,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 }
                 if(canSignUp){
+                    //TODO ADD USER
                     Toast.makeText(SignupActivity.this,"SignUp successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignupActivity.this, PositionAuthActivity.class);
 

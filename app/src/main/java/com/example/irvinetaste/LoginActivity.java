@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(canLogin){
                     Toast.makeText(LoginActivity.this,"login successfully", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(LoginActivity.this, PositionAuthActivity.class);
                     startActivity(intent);
                 }else{
@@ -109,6 +110,15 @@ public class LoginActivity extends AppCompatActivity {
                 if (rs.next()) {
                     //login success
                     canLogin = true;
+
+//                    System.out.println("userId = " + rs.getInt("userId"));
+                    //set the attribute of static User
+                    User.setUserId(rs.getInt("userId"));
+                    User.setPhoneNum(rs.getString("phoneNumber"));
+                    User.setUsername(rs.getString("userName"));
+                    User.setPassword(rs.getString("password"));
+//                    System.out.println("((((()))))" + User.getUserId());
+
                 } else {
                     //login fails
                     canLogin = false;
