@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.irvinetaste.utils.DBThread;
+import com.squareup.picasso.Picasso;
 
 import java.util.function.Consumer;
 
@@ -25,29 +28,34 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private RecyclerView nearbyView;
     private Button btn;
-    private NearbyAdapter nearbyAdapter;
     static Retrofit retrofit = null;
     static final String BASE_URL = "https://api.yelp.com/v3/";
-    static final String TAG = WelcomeActivity.class.getSimpleName();
-    private String id;
+    static final String TAG = RestaurantActivity.class.getSimpleName();
     private Restaurant restaurant;
+    private String id;
     private String url;
-    private String name;
-    private String phone;
-    private Float rating;
-    private String price;
-    private Location location;
+    private String restName;
+    private ImageView image;
+    private TextView name;
+    private TextView address;
+    private TextView phone;
+    private TextView rating;
+    private TextView price;
     private Context ctx = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
-
         Intent intent = getIntent();
-        //TODO
         id = intent.getStringExtra("id");
         btn = this.findViewById(R.id.bookmark);
+        image = this.findViewById(R.id.restImage);
+        name = this.findViewById(R.id.name);
+        address = this.findViewById(R.id.address);
+        phone = this.findViewById(R.id.phone);
+        rating = this.findViewById(R.id.rating);
+        price = this.findViewById(R.id.cost);
         connect();
 
     }
@@ -65,18 +73,37 @@ public class RestaurantActivity extends AppCompatActivity {
         call.enqueue(new Callback<Restaurant>() {
             @Override
             public void onResponse(Call<Restaurant> call, Response<Restaurant> response) {
-                System.out.println("Restaurant: " + response.body().getName());
                 restaurant = response.body();
                 url = restaurant.getImgUrl();
-                name = restaurant.getName();
-                phone = restaurant.getDisplayPhone();
-                rating = restaurant.getRating();
-                price = restaurant.getPrice();
-                location = restaurant.getLocation();
-                onClick(btn, (c) -> addBookmark((int) c), (c) -> removeBookmark((int) c), id);
+                Picasso.get().load(url).into(image);
+                restName = restaurant.getName();
+                name.setText(restName);
+                address.setText(restaurant.getLocation());
+                phone.setText(restaurant.getDisplayPhone());
+                rating.setText(restaurant.getRating().toString());
+                price.setText(restaurant.getPrice());
+                btn.setText("Pin");
+                for (Bookmark bm : User.getBookmarks()) {
+                    if (bm.getRestaurantId().equals(restaurant.getId())) {
+                        btn.setText("Unpin");
+                        break;
+                    }
+                }
+                onClick(btn, (c) -> addBookmark((String) c), (c) -> removeBookmark((String) c), id);
                 nearbyView = findViewById(R.id.nearby);
                 nearbyView.setLayoutManager(new LinearLayoutManager(ctx));
-                nearbyView.setAdapter(nearbyAdapter);
+                Call<NearbyRestaurants> neabyList = restaurantApiService.getRecommend(restaurant.getLatitude(), restaurant.getLongtitude());
+                neabyList.enqueue(new Callback<NearbyRestaurants>() {
+                    @Override
+                    public void onResponse(Call<NearbyRestaurants> call, Response<NearbyRestaurants> response) {
+                        nearbyView.setAdapter(new NearbyAdapter(response.body(), ctx));
+                    }
+
+                    @Override
+                    public void onFailure(Call<NearbyRestaurants> call, Throwable t) {
+                        Log.e(TAG, t.toString());
+                    }
+                });
             }
 
             @Override
@@ -86,14 +113,14 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
-    public void addBookmark(int id) {
-        DBThread dbThread = new DBThread(0, id);
+    public void addBookmark(String id) {
+        DBThread dbThread = new DBThread(1, id);
         Thread thread = new Thread(dbThread);
         thread.start();
     }
 
-    public void removeBookmark(int id) {
-        DBThread dbThread = new DBThread(0, id);
+    public void removeBookmark(String id) {
+        DBThread dbThread = new DBThread(2, id);
         Thread thread = new Thread(dbThread);
         thread.start();
     }
@@ -102,14 +129,15 @@ public class RestaurantActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btn.getText().toString().equals("Bookmark")) {
-                    User.addBookmark(id, name, url);
-                    btn.setText("Unbookmark");
+                if (btn.getText().toString().equals("Pin")) {
+                    User.addBookmark(id, restName, url);
+                    btn.setText("Unpin");
                     c1.accept(id);
-                } else if (btn.getText().toString().equals("Unbookmark")) {
+                } else if (btn.getText().toString().equals("Unpin")) {
                     Bookmark rm = null;
-                    for (Bookmark bm : User.getBookmarks()) { if (bm.getRestaurantId() == id) { rm = bm; break; } }
+                    for (Bookmark bm : User.getBookmarks()) { if (bm.getRestaurantId().equals(id)) { rm = bm; break; } }
                     User.removeBookmark(rm);
+                    btn.setText("Pin");
                     c2.accept(id);
                 }
             }

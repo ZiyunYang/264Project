@@ -1,6 +1,7 @@
 package com.example.irvinetaste;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -21,6 +22,7 @@ public class BookmarkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmark);
         bookmarks = findViewById(R.id.bookmarks);
+        bookmarks.setLayoutManager(new LinearLayoutManager(this));
         bookmarks.setAdapter(new BookmarkAdapter(this));
     }
 }

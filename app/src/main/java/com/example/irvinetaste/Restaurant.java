@@ -26,6 +26,8 @@ public class Restaurant {
     private String price;
     @SerializedName("location")
     private Location location;
+    @SerializedName("coordinates")
+    private Coordinates coordinates;
     @SerializedName("photos")
     private List<String> photos;
     @SerializedName("categories")
@@ -35,8 +37,8 @@ public class Restaurant {
     @SerializedName("distance")
     private Double distance;
 
-    public Restaurant(String id,String name, String url, boolean isClaimed,boolean isClosed, String phone,
-                      int reviewCount, Float rating, String price, Location location, List<String> photos){
+    public Restaurant(String id, String name, String url, boolean isClaimed, boolean isClosed, String phone,
+                      int reviewCount, float rating, String price, Location location, Coordinates coordinate, List<String> photos){
         this.id=id;
         this.name=name;
         this.imgUrl=url;
@@ -47,41 +49,32 @@ public class Restaurant {
         this.rating=rating;
         this.price=price;
         this.location=location;
+        this.coordinates = coordinate;
         this.photos=photos;
     }
 
-    public String getName(){
-        return name;
-    }
-    public String getPrice(){
-        return price;
-    }
-    public Float getRating(){
-        return rating;
-    }
-    public String getImgUrl(){
-        return imgUrl;
-    }
+    public String getName(){ return name; }
 
-    public String getId() {
-        return id;
-    }
+    public String getPrice(){ return price; }
 
-    public List<HashMap<String, String>> getCategories(){
-        return categories;
-    }
+    public Float getRating(){ return rating; }
 
-    public List<String> getTransactions() {
-        return transactions;
-    }
+    public String getImgUrl(){ return imgUrl; }
 
-    public Double getDistance() {
-        return distance;
-    }
+    public String getId() { return id; }
 
-    public Location getLocation() {
-        return location;
-    }
+    public List<HashMap<String, String>> getCategories(){ return categories; }
+
+    public List<String> getTransactions() { return transactions; }
+
+    public Double getDistance() { return distance; }
+
+    public String getLocation() { return location.getAddress(); }
 
     public String getDisplayPhone() { return displayPhone; }
+
+    public double getLatitude() { return coordinates.getLatitude(); }
+
+    public double getLongtitude() { return coordinates.getLongtitude(); }
 }
+

@@ -12,10 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.function.Consumer;
-
 public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.ViewHolder> {
 
     private NearbyRestaurants nearbyRestaurants;
@@ -50,20 +46,24 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Restaurant restaurant = nearbyRestaurants.get(position);
         holder.name.setText(restaurant.getName());
-        holder.name.setOnClickListener(goToRestaurant);
-        holder.imageView.setOnClickListener(goToRestaurant);
+        MyClickListener myClickListener = new MyClickListener(restaurant.getId());
+        holder.name.setOnClickListener(myClickListener);
+        holder.imageView.setOnClickListener(myClickListener);
         holder.price.setText(restaurant.getPrice());
         holder.rating.setText(restaurant.getRating().toString());
         Picasso.get().load(restaurant.getImgUrl()).into(holder.imageView);
     }
 
-    private View.OnClickListener goToRestaurant = new View.OnClickListener() {
+    public class MyClickListener implements View.OnClickListener {
+        String id;
+        public MyClickListener(String restId) { this.id = restId; }
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, RestaurantActivity.class);
+            intent.putExtra("id", id);
             context.startActivity(intent);
         }
-    };
+    }
 
     @Override
     public int getItemCount() { return this.nearbyRestaurants.size(); }

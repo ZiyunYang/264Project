@@ -9,7 +9,6 @@ import java.sql.Statement;
 
 public class DBThread implements Runnable {
 
-    Connection conn;
     int jobId;
     Object argument;
     Runnable[] jobs = {() -> changeUserName((String) argument), () -> addBookmark((String) argument), () -> removeBookmark((String) argument)};;
@@ -17,7 +16,6 @@ public class DBThread implements Runnable {
     public DBThread(int id, Object arg) {
         jobId = id;
         argument = arg;
-        conn = getConn();
     }
 
     public Connection getConn() {
@@ -34,8 +32,11 @@ public class DBThread implements Runnable {
 
     public void changeUserName(String n) {
         try {
+            Connection conn = getConn();
             Statement stmt = conn.createStatement();
             stmt.execute(String.format("UPDATE user SET userName = \'%s\' WHERE userId = %d", n, User.getUserId()));
+            stmt.close();
+            conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -43,8 +44,11 @@ public class DBThread implements Runnable {
 
     public void addBookmark(String id) {
         try {
+            Connection conn = getConn();
             Statement stmt = conn.createStatement();
             stmt.execute(String.format("INSERT INTO bookmark (userId, restaurantId) VALUES (%d, \'%s\')", User.getUserId(), id));
+            stmt.close();
+            conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -52,8 +56,11 @@ public class DBThread implements Runnable {
 
     public void removeBookmark(String id) {
         try {
+            Connection conn = getConn();
             Statement stmt = conn.createStatement();
             stmt.execute(String.format("DELETE FROM bookmark WHERE userId = %d and restaurantId = \'%s\'", User.getUserId(), id));
+            stmt.close();
+            conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
