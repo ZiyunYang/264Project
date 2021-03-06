@@ -32,12 +32,12 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         Intent intent = getIntent();
-        float latitude = intent.getIntExtra("latitude", 0);
-        float longitude = intent.getIntExtra("longitude", 0);
-        connect( latitude,longitude);
+        double latitude = intent.getDoubleExtra("latitude", 0);
+        double longitude = intent.getDoubleExtra("longitude", 0);
+        connect(latitude, longitude);
 
     }
-    private void connect(float latitude, float longitude){
+    private void connect(double latitude, double longitude){
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -50,7 +50,7 @@ public class HomepageActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Call<NearbyRestaurants>  call= restaurantApiService.getRecommend(latitude,longitude);
+        Call<NearbyRestaurants> call= restaurantApiService.getRecommend(latitude, longitude);
         call.enqueue(new Callback<NearbyRestaurants>() {
             @Override
             public void onResponse(Call<NearbyRestaurants> call, Response<NearbyRestaurants> response) {

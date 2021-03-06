@@ -38,8 +38,7 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
         holder.name.setText(restaurant.getName());
         holder.rating.setText(restaurant.getRating().toString());
         holder.price.setText(restaurant.getPrice());
-        Location location = restaurant.getLocation();
-        String address = location.address().toString();
+        String address = restaurant.getLocation();
 
         List<String>transactions = restaurant.getTransactions();
         String delivery = "X Delivery", takeout = "X Takeout";
@@ -50,7 +49,7 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
             takeout = "√ Takeout";
         }
 
-        holder.address.setText(address.substring(1, address.length()-1));
+        holder.address.setText(address);
         holder.delivery.setText(delivery);
         holder.takeout.setText(takeout);
         String distance = String.format("%s m", Double.valueOf(restaurant.getDistance()).intValue());

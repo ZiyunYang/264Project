@@ -52,7 +52,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         holder.rating.setText(restaurant.getRating() + "");
         holder.price.setText(restaurant.getPrice());
         Picasso.get().load(restaurant.getImgUrl()).into(holder.restaurantImg);
-        System.out.println("1---"+restaurant.getName()+","+restaurant.getId());
         myClickListener listener = new myClickListener(restaurant.getId());
         holder.restaurantImg.setOnClickListener(listener);
     }

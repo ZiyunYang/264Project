@@ -38,7 +38,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             imageView = itemView.findViewById(R.id.bmpic);
             restaurantName = itemView.findViewById(R.id.bmname);
             btn = itemView.findViewById(R.id.bmbtn);
-
         }
     }
 
@@ -51,23 +50,27 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int pos) {
         Bookmark bm = bookmarks.get(pos);
-        holder.imageView.setOnClickListener(goToRestaurant);
+        MyClickListener myClickListener = new MyClickListener(bm.getRestaurantId());
+        holder.imageView.setOnClickListener(myClickListener);
         Picasso.get().load(bm.getImageUrl()).into(holder.imageView);
         holder.restaurantName.setText(bm.getName());
-        holder.restaurantName.setOnClickListener(goToRestaurant);
+        holder.restaurantName.setOnClickListener(myClickListener);
         onClick(holder.btn, (c) -> removeBookmark((String) c), bm.getRestaurantId());
     }
 
-    private View.OnClickListener goToRestaurant = new View.OnClickListener() {
+    public class MyClickListener implements View.OnClickListener {
+        String id;
+        public MyClickListener(String restId) { this.id = restId; }
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, RestaurantActivity.class);
+            intent.putExtra("id", id);
             context.startActivity(intent);
         }
-    };
+    }
 
     public void removeBookmark(String id) {
-        DBThread dbThread = new DBThread(0, id);
+        DBThread dbThread = new DBThread(2, id);
         Thread thread = new Thread(dbThread);
         thread.start();
     }

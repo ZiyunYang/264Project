@@ -24,7 +24,7 @@ public interface RestaurantApiService {
 
     @Headers("Authorization:Bearer qAqJsBlux6FpnHE_73tuCnL-ysWNEz1LNA_udit4Zbxhy-VyzApCFk8U1704B1FrufOGYRdLgzCceyMEBcATpHgr1rfAfrRlO7dUaac8iJiE-0MvuPBxkXoEMQgzYHYx")
     @GET("businesses/search")
-    public Call<NearbyRestaurants> getRecommend( @Query("latitude") float latitude, @Query("longitude") float longitude);
+    public Call<NearbyRestaurants> getRecommend( @Query("latitude") double latitude, @Query("longitude") double longitude);
 
     // search term and location(default: irvine)
     // https://api.yelp.com/v3/businesses/search?location=irvine&term=delis
