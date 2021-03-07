@@ -72,7 +72,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 sort_by = "best_match";
         }
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants);
+        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants, SearchResultActivity.this);
         connect();
         // recyclerView
         recyclerView = findViewById(R.id.rvSearchRestaurantList);
@@ -109,8 +109,6 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void clickSearchBar(View view){
-//        onDestroy();
-//        super.onDestroy();
         finish();
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
@@ -142,7 +140,7 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void refresh(String item) {
-//        finish();
+        finish();
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchQuery", queryString);
         intent.putExtra("sort", item);
