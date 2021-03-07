@@ -72,7 +72,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 sort_by = "best_match";
         }
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants);
+        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants, SearchResultActivity.this);
         connect();
         // recyclerView
         recyclerView = findViewById(R.id.rvSearchRestaurantList);
@@ -109,6 +109,7 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void clickSearchBar(View view){
+        finish();
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
         System.out.println("i am back");
