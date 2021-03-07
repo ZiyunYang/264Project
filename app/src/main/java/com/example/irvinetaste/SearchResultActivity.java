@@ -109,6 +109,9 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void clickSearchBar(View view){
+//        onDestroy();
+//        super.onDestroy();
+        finish();
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
         System.out.println("i am back");
@@ -139,7 +142,7 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void refresh(String item) {
-        finish();
+//        finish();
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchQuery", queryString);
         intent.putExtra("sort", item);
