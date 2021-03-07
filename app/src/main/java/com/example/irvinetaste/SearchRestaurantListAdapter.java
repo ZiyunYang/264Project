@@ -66,6 +66,15 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
 
         myClickListener listener = new myClickListener(restaurant.getId());
         holder.restaurantImg.setOnClickListener(listener);
+        holder.address.setOnClickListener(listener);
+        holder.categories.setOnClickListener(listener);
+        holder.delivery.setOnClickListener(listener);
+        holder.displayAddress.setOnClickListener(listener);
+        holder.rating.setOnClickListener(listener);
+        holder.name.setOnClickListener(listener);
+        holder.price.setOnClickListener(listener);
+        holder.takeout.setOnClickListener(listener);
+        holder.distance.setOnClickListener(listener);
     }
 
     @Override
