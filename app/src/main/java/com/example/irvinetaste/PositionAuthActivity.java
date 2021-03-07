@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+//reference: https://github.com/googlemaps/android-samples/blob/master/ApiDemos/java/app/src/gms/java/com/example/mapdemo/MyLocationDemoActivity.java
 public class PositionAuthActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //if yes, ask for permission of current phone. If no, default location is UCI location
