@@ -66,6 +66,15 @@ public class DBThread implements Runnable {
         }
     }
 
+    //TODO
+    public void ChangeUserPwd(String phoneNumber, String password){
+
+    }
+
+    public void addUser(String phoneNumber, String password, String userName){
+
+    }
+
     @Override
     public void run() { jobs[jobId].run(); }
 }

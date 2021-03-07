@@ -69,15 +69,18 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        final LatLng irvineLocation = new LatLng(34.04,-118.15);
+        final LatLng irvineLocation = new LatLng(33.6,-117.8);
         latitude = irvineLocation.latitude;
         longitude = irvineLocation.longitude;
         Marker IrvineMark = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
+        //constrain the original camera in the USA
+
 
 
         UiSettings uiSettings = googleMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setCompassEnabled(true);
+        uiSettings.setMyLocationButtonEnabled(true);
 
         googleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener(){
 
