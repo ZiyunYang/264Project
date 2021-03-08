@@ -93,6 +93,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 nearbyView = findViewById(R.id.nearby);
                 nearbyView.setLayoutManager(new LinearLayoutManager(ctx));
                 Call<NearbyRestaurants> neabyList = restaurantApiService.getRecommend(restaurant.getLatitude(), restaurant.getLongtitude());
+                System.out.printf("restaurant name:%s, restaurant id : %s, lat:%f, long:%f\n", restName,id, restaurant.getLatitude(), restaurant.getLongtitude());
                 neabyList.enqueue(new Callback<NearbyRestaurants>() {
                     @Override
                     public void onResponse(Call<NearbyRestaurants> call, Response<NearbyRestaurants> response) {
@@ -135,7 +136,12 @@ public class RestaurantActivity extends AppCompatActivity {
                     c1.accept(id);
                 } else if (btn.getText().toString().equals("Unpin")) {
                     Bookmark rm = null;
-                    for (Bookmark bm : User.getBookmarks()) { if (bm.getRestaurantId().equals(id)) { rm = bm; break; } }
+                    for (Bookmark bm : User.getBookmarks()) {
+                        if (bm.getRestaurantId().equals(id)) {
+                            rm = bm;
+                            break;
+                        }
+                    }
                     User.removeBookmark(rm);
                     btn.setText("Pin");
                     c2.accept(id);
