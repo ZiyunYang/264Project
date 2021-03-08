@@ -75,6 +75,6 @@ public class Restaurant {
 
     public double getLatitude() { return coordinates.getLatitude(); }
 
-    public double getLongtitude() { return coordinates.getLongtitude(); }
+    public double getLongtitude() { return coordinates.getLongitude(); }
 }
 
