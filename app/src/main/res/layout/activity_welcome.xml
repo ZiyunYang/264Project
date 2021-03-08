@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="488dp"
-        android:layout_marginEnd="158dp"
+        android:layout_marginTop="471dp"
+        android:layout_marginEnd="157dp"
         android:onClick="onClickSignIn"
         android:text="Sign In" />
 
@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="556dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginTop="536dp"
+        android:layout_marginEnd="153dp"
         android:onClick="onClickSignUp"
         android:text="Sign Up" />
 
@@ -40,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/signup"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="39dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="31dp"
         android:onClick="onClickForget"
         android:text="Forget Your Account Or Password" />
 
