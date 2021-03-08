@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.irvinetaste.utils.LocationUtils;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -69,12 +70,15 @@ public class PositionAuthActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        final LatLng irvineLocation = new LatLng(33.6,-117.8);
+        final LatLng irvineLocation = new LatLng(33.6405,-117.8443);
         latitude = irvineLocation.latitude;
         longitude = irvineLocation.longitude;
         Marker IrvineMark = googleMap.addMarker(new MarkerOptions().position(irvineLocation).draggable(true));
-        //constrain the original camera in the USA
+        //constrain the original camera at Irvine
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(irvineLocation));
+        googleMap.setMinZoomPreference(10);
 
+        //TODO maybe add setMyLocation
 
 
         UiSettings uiSettings = googleMap.getUiSettings();
