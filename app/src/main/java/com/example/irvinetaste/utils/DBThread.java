@@ -66,6 +66,21 @@ public class DBThread implements Runnable {
         }
     }
 
+    //TODO
+    public void ChangeUserPwd(String phoneNumber, String password){
+        try{
+            Connection conn = getConn();
+            Statement stmt = conn.createStatement();
+            stmt.execute(String.format("UPDATE user SET password = \'%s\' WHERE phoneNumber = \'%s\'", password, phoneNumber));
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addUser(String phoneNumber, String password, String userName){
+
+    }
+
     @Override
     public void run() { jobs[jobId].run(); }
 }

@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
-//
+//TODO
 public class ForgetAccountActivity extends AppCompatActivity {
 
     private Button verifyCodeBtn, changePwdBtn;
