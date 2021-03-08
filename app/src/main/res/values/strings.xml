@@ -14,5 +14,6 @@
     <string name="bookmarkBtn">Bookmark</string>
     <string name="MAPS_API_KEY">AIzaSyD71Xk9uhFZnY0v_beRMZW6-CUS7MKV7ag</string>
     <string name ="search_restaurant_name">restaurant name</string>
-    <string name="price">price</string>>
+    <string name="price">price</string>
+    <string name="back"><![CDATA[<]]></string>>
 </resources>

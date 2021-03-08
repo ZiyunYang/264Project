@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/searchRestaurantImg"
-        android:layout_width="wrap_content"
-        android:layout_height="113dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
@@ -23,15 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search_restaurant_name"
+        android:layout_weight="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <TextView
-        android:id="@+id/searchDistance"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:text="distance" />
+        <TextView
+            android:id="@+id/searchDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="distance" />
     </LinearLayout>
 
     <LinearLayout

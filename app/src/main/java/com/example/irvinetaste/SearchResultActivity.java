@@ -41,7 +41,6 @@ public class SearchResultActivity extends AppCompatActivity {
     private String sort;
     private String sort_by;
     private AlertDialog alertDialog;
-    private Button sortBtn;
 
 
     @Override
@@ -53,6 +52,8 @@ public class SearchResultActivity extends AppCompatActivity {
         queryString = intent.getStringExtra("searchQuery");
         query = findViewById(R.id.search_result_bar);
         query.setQueryHint(queryString);
+
+        query.setOnQueryTextListener(queryTextListener);
 
         sort = intent.getStringExtra("sort");
         if (sort == null) {
@@ -72,7 +73,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 sort_by = "best_match";
         }
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants);
+        restaurantListAdapter = new SearchRestaurantListAdapter(restaurants, SearchResultActivity.this);
         connect();
         // recyclerView
         recyclerView = findViewById(R.id.rvSearchRestaurantList);
@@ -97,7 +98,8 @@ public class SearchResultActivity extends AppCompatActivity {
         call.enqueue(new Callback<SearchRestaurantResponse>() {
             @Override
             public void onResponse(Call<SearchRestaurantResponse> call, Response<SearchRestaurantResponse> response) {
-                System.out.println("Restaurant: " + response.body().getRestaurantList());
+//                System.out.println("Restaurant: " + response.body().getRestaurantList());
+
                 restaurantListAdapter.updateList(response.body().getRestaurantList());
             }
 
@@ -111,7 +113,7 @@ public class SearchResultActivity extends AppCompatActivity {
     public void clickSearchBar(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
-        System.out.println("i am back");
+        finish();
     }
 
     public void clickSearchRestaurant(View view) {
@@ -147,10 +149,38 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void search2(View view){
+        String queryBefore = queryString;
         query = findViewById(R.id.search_result_bar);
         queryString = query.getQuery().toString();
+        if(queryString.length() == 0){
+            queryString =  queryBefore;
+            finish();
+        }
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchQuery", queryString);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    SearchView.OnQueryTextListener queryTextListener
+            = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String s) {
+
+            Intent intent = new Intent(SearchResultActivity.this, SearchResultActivity.class);
+            intent.putExtra("searchQuery", s);
+            SearchResultActivity.this.startActivity(intent);
+            return true;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String s) {
+            return false;
+        }
+    };
 }

@@ -1,6 +1,9 @@
 package com.example.irvinetaste;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +22,10 @@ import java.util.stream.Collectors;
 public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRestaurantListAdapter.ViewHolder>{
 
     private List<Restaurant> mData;
-    SearchRestaurantListAdapter(List<Restaurant> data) {
+    private Context context;
+    SearchRestaurantListAdapter(List<Restaurant> data, Context context) {
         this.mData = data;
+        this.context = context;
     }
 
     @NonNull
@@ -58,14 +63,37 @@ public class SearchRestaurantListAdapter extends RecyclerView.Adapter<SearchRest
         String categoriesStr = categories.stream().map(node -> node.get("title")).collect(Collectors.toList()).toString();
         holder.categories.setText(categoriesStr.substring(1, categoriesStr.length()-1));
 
-
-        // todo load view
         Picasso.get().load(restaurant.getImgUrl()).into(holder.restaurantImg);
+
+        myClickListener listener = new myClickListener(restaurant.getId());
+        holder.restaurantImg.setOnClickListener(listener);
+        holder.address.setOnClickListener(listener);
+        holder.categories.setOnClickListener(listener);
+        holder.delivery.setOnClickListener(listener);
+        holder.displayAddress.setOnClickListener(listener);
+        holder.rating.setOnClickListener(listener);
+        holder.name.setOnClickListener(listener);
+        holder.price.setOnClickListener(listener);
+        holder.takeout.setOnClickListener(listener);
+        holder.distance.setOnClickListener(listener);
     }
 
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public class myClickListener implements View.OnClickListener{
+        String id;
+        public myClickListener(String id){
+            this.id = id;
+        }
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(context, RestaurantActivity.class);
+            intent.putExtra("id", id);
+            context.startActivity(intent);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
