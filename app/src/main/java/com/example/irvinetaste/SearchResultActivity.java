@@ -53,6 +53,8 @@ public class SearchResultActivity extends AppCompatActivity {
         query = findViewById(R.id.search_result_bar);
         query.setQueryHint(queryString);
 
+        query.setOnQueryTextListener(queryTextListener);
+
         sort = intent.getStringExtra("sort");
         if (sort == null) {
             sort = "Recommended";
@@ -111,6 +113,7 @@ public class SearchResultActivity extends AppCompatActivity {
     public void clickSearchBar(View view){
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void clickSearchRestaurant(View view) {
@@ -146,8 +149,13 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void search2(View view){
+        String queryBefore = queryString;
         query = findViewById(R.id.search_result_bar);
         queryString = query.getQuery().toString();
+        if(queryString.length() == 0){
+            queryString =  queryBefore;
+            finish();
+        }
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchQuery", queryString);
         startActivity(intent);
@@ -155,8 +163,24 @@ public class SearchResultActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(SearchResultActivity.this, SearchActivity.class);
-        SearchResultActivity.this.startActivity(intent);
-//        super.onBackPressed();
+        super.onBackPressed();
+        finish();
     }
+
+    SearchView.OnQueryTextListener queryTextListener
+            = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String s) {
+
+            Intent intent = new Intent(SearchResultActivity.this, SearchResultActivity.class);
+            intent.putExtra("searchQuery", s);
+            SearchResultActivity.this.startActivity(intent);
+            return true;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String s) {
+            return false;
+        }
+    };
 }

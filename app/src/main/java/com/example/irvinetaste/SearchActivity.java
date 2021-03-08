@@ -48,4 +48,11 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SearchActivity.this, HomepageActivity.class);
+        SearchActivity.this.startActivity(intent);
+        finish();
+    }
+
 }
