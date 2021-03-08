@@ -22,9 +22,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /*
-TODO
 need to place some little icon before each line
-bug: first login fail and then enter true input , will fail too.
+bug: first login fail and then enter true input , will fail too. Same phone Number  fixed on 2021.03.07
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameText;
     private EditText passwordText;
     private Boolean canLogin = false;
-    protected static String sin_state = "200";
 
 
     @Override
@@ -54,9 +52,14 @@ public class LoginActivity extends AppCompatActivity {
                 Thread thread = new Thread(loginThread);
                 thread.start();
 
-                for(;sin_state.equals("200");){
-
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+
+
+                System.out.println("canLogin is " + canLogin);
 
                 if(canLogin){
                     Toast.makeText(LoginActivity.this,"login successfully", Toast.LENGTH_SHORT).show();
@@ -107,10 +110,12 @@ public class LoginActivity extends AppCompatActivity {
                 String sql = "SELECT * FROM user where phoneNumber = '"+usernameText.getText().toString()+"' and password = '"+passwordText.getText().toString()+"'";
                 System.out.println(sql);
                 ResultSet rs = stmt.executeQuery(sql);
+                System.out.println();
 
                 if (rs.next()) {
                     //login success
                     canLogin = true;
+                    System.out.println("the login successed");
 
 //                    System.out.println("userId = " + rs.getInt("userId"));
                     //set the attribute of static User
@@ -121,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    System.out.println("((((()))))" + User.getUserId());
 
                 } else {
+                    System.out.println("the login failed");
                     //login fails
                     canLogin = false;
                 }
@@ -128,8 +134,6 @@ public class LoginActivity extends AppCompatActivity {
                 rs.close();
                 stmt.close();
                 conn.close();
-
-                LoginActivity.sin_state = "1";
 
             }catch (Exception e){
                 e.printStackTrace();
