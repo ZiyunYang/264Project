@@ -73,6 +73,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
         DBThread dbThread = new DBThread(2, id);
         Thread thread = new Thread(dbThread);
         thread.start();
+        notifyDataSetChanged();
     }
 
     public void onClick(Button btn, Consumer c, String id) {
