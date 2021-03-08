@@ -11,11 +11,26 @@ public class DBThread implements Runnable {
 
     int jobId;
     Object argument;
-    Runnable[] jobs = {() -> changeUserName((String) argument), () -> addBookmark((String) argument), () -> removeBookmark((String) argument)};;
+    Object phoneNumber,password,userName;
+    Runnable[] jobs = {() -> changeUserName((String) argument), () -> addBookmark((String) argument), () -> removeBookmark((String) argument),
+            () -> ChangeUserPwd((String)phoneNumber, (String)password), () -> addUser((String)phoneNumber,(String)password,(String)userName)};
 
     public DBThread(int id, Object arg) {
         jobId = id;
         argument = arg;
+    }
+
+    public DBThread(int id, Object arg1, Object arg2){
+        jobId = id;
+        phoneNumber = arg1;
+        password = arg2;
+    }
+
+    public DBThread(int id, Object arg1, Object arg2, Object arg3){
+        jobId = id;
+        phoneNumber = arg1;
+        password = arg2;
+        userName = arg3;
     }
 
     public Connection getConn() {
@@ -66,19 +81,28 @@ public class DBThread implements Runnable {
         }
     }
 
-    //TODO
     public void ChangeUserPwd(String phoneNumber, String password){
         try{
             Connection conn = getConn();
             Statement stmt = conn.createStatement();
             stmt.execute(String.format("UPDATE user SET password = \'%s\' WHERE phoneNumber = \'%s\'", password, phoneNumber));
+            stmt.close();
+            conn.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
     public void addUser(String phoneNumber, String password, String userName){
-
+        try{
+            Connection conn = getConn();
+            Statement stmt = conn.createStatement();
+            stmt.execute(String.format("INSERT INTO user (userName,phoneNumber,password) values ('"+userName)+"', '"+phoneNumber+"', '"+password+"')");
+            stmt.close();
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

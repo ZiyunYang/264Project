@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.irvinetaste.utils.DBThread;
 import com.example.irvinetaste.utils.DataSet;
 import com.example.irvinetaste.utils.PhoneNumberUtils;
 
@@ -27,7 +28,6 @@ import java.sql.Statement;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
-//TODO: same phone number can still signUp
 //implementation of phone verify: https://www.mob.com/wiki/detailed?wiki=SMSSDK_for_Android_kuaisujicheng&id=23
 public class SignupActivity extends AppCompatActivity {
 
@@ -135,27 +135,29 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
+                code = verifyCodeEdt.getText().toString();
+                if(!code.isEmpty()){
+                    //Submit the verify code
+                    SMSSDK.submitVerificationCode("1", phoneNumber, code);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Please input the verify code",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 SignUpThread signUpThread = new SignUpThread();
                 Thread thread = new Thread(signUpThread);
                 thread.start();
                 for(;signUp_state.equals("200");){
 
                 }
+
                 if(canSignUp){
-                    //TODO ADD USER
                     Toast.makeText(SignupActivity.this,"SignUp successfully", Toast.LENGTH_SHORT).show();
 
-                    code = verifyCodeEdt.getText().toString();
-                    if(!code.isEmpty()){
-                        //Submit the verify code
-                        SMSSDK.submitVerificationCode("1", phoneNumber, code);
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Please input the verify code",Toast.LENGTH_LONG).show();
-                        return;
-                    }
+                    addUser(phoneNumber,passwordEdt.getText().toString(),userNameEdt.getText().toString());
 
-
-                    Intent intent = new Intent(SignupActivity.this, PositionAuthActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }else{
                     AlertDialog textTips = new AlertDialog.Builder(SignupActivity.this)
@@ -172,6 +174,12 @@ public class SignupActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         SMSSDK.unregisterEventHandler(eh);
+    }
+
+    public void addUser(String phoneNumber,String password, String userName){
+        DBThread dbThread = new DBThread(4,phoneNumber,password,userName);
+        Thread thread1 = new Thread(dbThread);
+        thread1.start();
     }
 
     class SignUpThread implements Runnable{
@@ -199,9 +207,8 @@ public class SignupActivity extends AppCompatActivity {
                 //create Statement object
                 Statement stmt = conn.createStatement();
                 //execute sql and get a ResultSet
-                String sql = "SELECT * FROM user where phoneNumber = '"+userNameEdt.getText().toString()+"'";
+                String sql = "SELECT * FROM user where phoneNumber = '"+phoneNumberEdt.getText().toString()+"'";
                 ResultSet rs = stmt.executeQuery(sql);
-
 
                 //need to use PhoneNumberUtils to judge whether valid number
                 if (rs.next()) {
@@ -210,9 +217,6 @@ public class SignupActivity extends AppCompatActivity {
                 } else {
                     //signUp fails
                     canSignUp = true;
-                    String insertSql = "INSERT INTO user (userName,phoneNumber,password) values ('"+userNameEdt.getText().toString()+"', '"+phoneNumberEdt.getText().toString()+"', '"+passwordEdt.getText().toString()+"')";
-                    stmt.execute(insertSql);
-
                 }
                 conn.close();
                 stmt.close();
