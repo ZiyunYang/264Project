@@ -68,5 +68,15 @@
         app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/username" />
+    <TextView
+        android:id="@+id/PasswordPicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_mima"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintEnd_toStartOf="@+id/password"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
