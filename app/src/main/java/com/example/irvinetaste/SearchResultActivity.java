@@ -41,7 +41,6 @@ public class SearchResultActivity extends AppCompatActivity {
     private String sort;
     private String sort_by;
     private AlertDialog alertDialog;
-    private Button sortBtn;
 
 
     @Override
@@ -109,10 +108,8 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     public void clickSearchBar(View view){
-        finish();
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
-        System.out.println("i am back");
     }
 
     public void clickSearchRestaurant(View view) {
@@ -153,5 +150,12 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchResultActivity.class);
         intent.putExtra("searchQuery", queryString);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SearchResultActivity.this, SearchActivity.class);
+        SearchResultActivity.this.startActivity(intent);
+//        super.onBackPressed();
     }
 }
