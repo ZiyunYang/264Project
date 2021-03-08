@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IrvineTaste">
         <activity android:name=".BookmarkActivity"/>
+        <activity android:name=".ChangePositionActivity"/>
         <activity android:name=".ForgetAccountActivity"/>
         <activity android:name=".HomepageActivity" />
         <activity android:name=".LoginActivity" />

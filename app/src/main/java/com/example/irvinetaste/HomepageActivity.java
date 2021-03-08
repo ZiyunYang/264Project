@@ -25,6 +25,8 @@ public class HomepageActivity extends AppCompatActivity {
     static Retrofit retrofit = null;
     List<Restaurant> restaurants;
     private RecyclerView recyclerView;
+    private double latitude;
+    private double longitude;
 
 
     @Override
@@ -32,8 +34,8 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         Intent intent = getIntent();
-        double latitude = intent.getDoubleExtra("latitude", 0);
-        double longitude = intent.getDoubleExtra("longitude", 0);
+        latitude = intent.getDoubleExtra("latitude", 0);
+        longitude = intent.getDoubleExtra("longitude", 0);
         connect(latitude, longitude);
 
     }
@@ -74,5 +76,14 @@ public class HomepageActivity extends AppCompatActivity {
     public void onClickProfile(View view){
         Intent intent = new Intent(this,UserProfileActivity.class);
         startActivity(intent);
+    }
+
+    public void onClickPosition(View view){
+        Intent intent = new Intent(this,ChangePositionActivity.class);
+        intent.putExtra("latitude",latitude);
+        intent.putExtra("longitude",longitude);
+        System.out.println(latitude + " the location is " + longitude);
+        startActivity(intent);
+        finish();
     }
 }

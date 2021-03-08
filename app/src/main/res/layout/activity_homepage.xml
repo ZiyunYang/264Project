@@ -26,6 +26,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginRight="333dp"
         android:text="location"
+        android:onClick="onClickPosition"
         android:textSize="7dp" />
 
     <Button
