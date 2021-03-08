@@ -96,7 +96,8 @@ public class SearchResultActivity extends AppCompatActivity {
         call.enqueue(new Callback<SearchRestaurantResponse>() {
             @Override
             public void onResponse(Call<SearchRestaurantResponse> call, Response<SearchRestaurantResponse> response) {
-                System.out.println("Restaurant: " + response.body().getRestaurantList());
+//                System.out.println("Restaurant: " + response.body().getRestaurantList());
+
                 restaurantListAdapter.updateList(response.body().getRestaurantList());
             }
 
