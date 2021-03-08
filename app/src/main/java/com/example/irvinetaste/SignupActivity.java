@@ -36,7 +36,6 @@ public class SignupActivity extends AppCompatActivity {
     private String phoneNumber, code;
 
     private boolean canSignUp = false;
-    protected static String signUp_state = "200";
 
     private EventHandler eh;
 
@@ -148,8 +147,11 @@ public class SignupActivity extends AppCompatActivity {
                 SignUpThread signUpThread = new SignUpThread();
                 Thread thread = new Thread(signUpThread);
                 thread.start();
-                for(;signUp_state.equals("200");){
 
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
                 if(canSignUp){
@@ -226,7 +228,6 @@ public class SignupActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            SignupActivity.signUp_state = "1";
 
         }
     }
