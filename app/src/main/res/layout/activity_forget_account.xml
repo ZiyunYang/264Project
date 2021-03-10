@@ -8,18 +8,17 @@
 
     <Button
         android:id="@+id/forgotVerifyCode"
-        android:layout_width="191dp"
-        android:layout_height="43dp"
+        android:layout_width="170dp"
+        android:layout_height="46dp"
         android:layout_gravity="start"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="16dp"
         android:text="Get Verify Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.303" />
+        app:layout_constraintTop_toBottomOf="@+id/forgotPhoneNumber"
+        app:layout_constraintVertical_bias="0.082" />
 
     <Button
         android:id="@+id/forgotChangePwd"
@@ -38,8 +37,8 @@
 
     <EditText
         android:id="@+id/forgotVerifyCodeText"
-        android:layout_width="140dp"
-        android:layout_height="45dp"
+        android:layout_width="141dp"
+        android:layout_height="46dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="Code"
@@ -47,39 +46,59 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintTop_toBottomOf="@+id/forgotPhoneNumber"
+        app:layout_constraintVertical_bias="0.082" />
 
     <EditText
         android:id="@+id/forgotNewPwd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="334dp"
+        android:layout_height="42dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="316dp"
         android:layout_marginEnd="24dp"
         android:hint="NewPassword"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/forgetPasswordPicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_mima"
+        app:layout_constraintBottom_toBottomOf="@+id/forgotNewPwd"
+        app:layout_constraintEnd_toStartOf="@+id/forgotNewPwd"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forgotNewPwd" />
 
     <EditText
         android:id="@+id/forgotPhoneNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="336dp"
+        android:layout_height="47dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="24dp"
         android:hint="PhoneNumber"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/forgotNumberPicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_dianhua_"
+        app:layout_constraintBottom_toBottomOf="@+id/forgotPhoneNumber"
+        app:layout_constraintEnd_toStartOf="@+id/forgotPhoneNumber"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forgotPhoneNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,17 +8,17 @@
 
     <Button
         android:id="@+id/verifycode"
-        android:layout_width="188dp"
-        android:layout_height="44dp"
+        android:layout_width="161dp"
+        android:layout_height="42dp"
         android:layout_gravity="start"
         android:layout_marginStart="22dp"
-        android:text="Get Verify Code"
+        android:text="Get Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.078" />
 
     <Button
         android:id="@+id/signup"
@@ -36,23 +36,34 @@
 
     <EditText
         android:id="@+id/signupUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="307dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="292dp"
         android:layout_marginEnd="24dp"
         android:hint="UserName"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/signUpUserNamePicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_yonghu"
+        app:layout_constraintBottom_toBottomOf="@+id/signupUsername"
+        app:layout_constraintEnd_toStartOf="@+id/signupUsername"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signupUsername" />
+
     <EditText
         android:id="@+id/verifycodetext"
-        android:layout_width="155dp"
-        android:layout_height="46dp"
+        android:layout_width="135dp"
+        android:layout_height="47dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="Code"
@@ -60,30 +71,41 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.08" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="308dp"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="24dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/signUpPasswordPicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_mima"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintEnd_toStartOf="@+id/password"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/password" />
+
     <EditText
         android:id="@+id/phoneNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="307dp"
+        android:layout_height="42dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
@@ -91,8 +113,19 @@
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signUpNumberPicture"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:drawableLeft="@drawable/ic_dianhua_"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
+        app:layout_constraintEnd_toStartOf="@+id/phoneNumber"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/phoneNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
