@@ -8,17 +8,17 @@
 
     <Button
         android:id="@+id/verifycode"
-        android:layout_width="188dp"
-        android:layout_height="44dp"
+        android:layout_width="161dp"
+        android:layout_height="42dp"
         android:layout_gravity="start"
         android:layout_marginStart="22dp"
-        android:text="Get Verify Code"
+        android:text="Get Code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.078" />
 
     <Button
         android:id="@+id/signup"
@@ -36,18 +36,19 @@
 
     <EditText
         android:id="@+id/signupUsername"
-        android:layout_width="349dp"
-        android:layout_height="49dp"
+        android:layout_width="307dp"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="292dp"
         android:layout_marginEnd="24dp"
         android:hint="UserName"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/signUpUserNamePicture"
         android:layout_width="20dp"
@@ -61,8 +62,8 @@
 
     <EditText
         android:id="@+id/verifycodetext"
-        android:layout_width="155dp"
-        android:layout_height="46dp"
+        android:layout_width="135dp"
+        android:layout_height="47dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="Code"
@@ -70,25 +71,26 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.08" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="348dp"
-        android:layout_height="44dp"
+        android:layout_width="308dp"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="24dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/signUpPasswordPicture"
         android:layout_width="20dp"
@@ -102,7 +104,7 @@
 
     <EditText
         android:id="@+id/phoneNumber"
-        android:layout_width="348dp"
+        android:layout_width="307dp"
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
@@ -111,9 +113,10 @@
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/signUpNumberPicture"
         android:layout_width="20dp"
